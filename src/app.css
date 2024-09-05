@@ -1,0 +1,41 @@
+/* :root {
+  --ion-color-primary: #3880ff;
+  --ion-color-secondary: #3dc2ff;
+  --ion-color-tertiary: #5260ff;
+  --ion-color-success: #2dd36f;
+  --ion-color-warning: #ffc409;
+  --ion-color-danger: #eb445a;
+  --ion-color-light: #f4f5f8;
+  --ion-color-medium: #92949c;
+  --ion-color-dark: #222428;
+
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
+
+  --navbar-background-color: #1e1e1e;
+  --navbar-text-color: #ffffff;
+} */
+
+* {
+  margin: 0;
+  /* padding: 0; */
+  box-sizing: border-box;
+  scrollbar-width: none;
+  scroll-behavior: smooth !important;
+}
+.dark-navbar {
+  --background: var(--navbar-background-color);
+  --color: var(--navbar-text-color);
+}
+
+.dark-header {
+  --background: var(--navbar-background-color);
+  --color: var(--navbar-text-color);
+}
+
+.header-md {
+  /* -webkit-box-shadow: none; */
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, -0.8),
+    0 -1px 0px 0 rgba(0, 0, 0, 0.14), 0 0px 5px 0 rgba(0, 0, 0, 0.12);
+}
+

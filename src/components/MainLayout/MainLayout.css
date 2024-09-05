@@ -1,0 +1,9 @@
+.menu-inner {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ion-menu {
+  display: flex;
+  flex-direction: column;
+}

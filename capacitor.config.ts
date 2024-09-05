@@ -1,9 +1,9 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'myApp1',
-  webDir: 'dist'
+  appId: "com.zadroit.takeit",
+  appName: "Take It Have It",
+  webDir: "dist",
 };
 
 export default config;
