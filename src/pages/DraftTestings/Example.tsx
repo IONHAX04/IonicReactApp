@@ -1,46 +1,51 @@
+import React from "react";
 import {
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonMenu,
-  IonMenuToggle,
-  IonPage,
-  IonTitle,
-  IonToolbar,
+  IonAccordion,
+  IonAccordionGroup,
+  IonItem,
+  IonLabel,
+  AccordionGroupCustomEvent,
 } from "@ionic/react";
-
 function Example() {
-  const menuType = "push";
+  const values = ["first", "second", "third"];
+  const accordionGroupChange = (ev: AccordionGroupCustomEvent) => {
+    const collapsedItems = values.filter((value) => value !== ev.detail.value);
+    const selectedValue = ev.detail.value;
+
+    console.log(
+      `Expanded: ${
+        selectedValue === undefined ? "None" : ev.detail.value
+      } | Collapsed: ${collapsedItems.join(", ")}`
+    );
+  };
 
   return (
-    <>
-      <IonMenu type={menuType} contentId="main-content">
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Menu Content</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent className="ion-padding">
-          <IonMenuToggle>
-            <IonButton>Click to close the menu</IonButton>
-          </IonMenuToggle>
-        </IonContent>
-      </IonMenu>
-      <IonPage id="main-content">
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Menu</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent className="ion-padding">
-          <h2>Select an overlay type:</h2>
-          <br />
-          <IonMenuToggle>
-            <IonButton>Click to open the menu</IonButton>
-          </IonMenuToggle>
-        </IonContent>
-      </IonPage>
-    </>
+    <IonAccordionGroup onIonChange={accordionGroupChange}>
+      <IonAccordion value="first">
+        <IonItem slot="header" color="light">
+          <IonLabel>First Accordion</IonLabel>
+        </IonItem>
+        <div className="ion-padding" slot="content">
+          First Content
+        </div>
+      </IonAccordion>
+      <IonAccordion value="second">
+        <IonItem slot="header" color="light">
+          <IonLabel>Second Accordion</IonLabel>
+        </IonItem>
+        <div className="ion-padding" slot="content">
+          Second Content
+        </div>
+      </IonAccordion>
+      <IonAccordion value="third">
+        <IonItem slot="header" color="light">
+          <IonLabel>Third Accordion</IonLabel>
+        </IonItem>
+        <div className="ion-padding" slot="content">
+          Third Content
+        </div>
+      </IonAccordion>
+    </IonAccordionGroup>
   );
 }
 export default Example;

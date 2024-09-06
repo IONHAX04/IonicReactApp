@@ -7,7 +7,6 @@ import {
   IonNavLink,
   IonButton,
 } from "@ionic/react";
-import Profile from "../../components/06-Profile/Profile";
 
 interface SettingsItem {
   icon: string;

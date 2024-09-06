@@ -13,6 +13,7 @@ import icon from "../../dist/logo.png";
 import { qrCodeOutline } from "ionicons/icons";
 
 import "./Tab2.css";
+import Explore from "../components/02-Explore/Explore";
 
 const Tab2: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const Tab2: React.FC = () => {
             <IonTitle size="large">Explore</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <Explore />
       </IonContent>
     </IonPage>
   );

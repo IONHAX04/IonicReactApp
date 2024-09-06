@@ -2,7 +2,7 @@
   margin-bottom: 30px;
 }
 
-.horizontal-scroll {
+.horizontalScroll {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -60,7 +60,7 @@
   font-size: 0.7rem;
 }
 
-.header-content {
+.headerContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -116,7 +116,7 @@
   height: 250px;
   margin: 10px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
 }
@@ -177,6 +177,13 @@
   }
 }
 
-.header-content .title-default {
+.headerContent .title-default {
   font-weight: bolder;
+}
+
+
+.horizontalScroll .scroll-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
