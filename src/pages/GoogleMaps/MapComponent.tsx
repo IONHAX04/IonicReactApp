@@ -47,7 +47,7 @@ const MapComponent = () => {
         buttons={["OK"]}
       />
 
-      <div className="header-content" style={{ marginBottom: "10px" }}>
+      <div className="headerContent" style={{ marginBottom: "10px" }}>
         <IonTitle>Explore More</IonTitle>
         <IonButtons>
           <IonButton>
@@ -57,7 +57,8 @@ const MapComponent = () => {
       </div>
       <div
         style={{
-          width: "calc(90% - 20px)",
+          display: "flex",
+          justifyContent: "center",
           height: "200px",
         }}
       >

@@ -36,7 +36,7 @@ const HorizontalRecCardFeeds: React.FC<RecommendedRestaurantsProps> = ({
 }) => {
   return (
     <div className="recommendationFeeds">
-      <div className="header-content">
+      <div className="headerContent">
         <IonTitle>Recommended Restaurants</IonTitle>
         <IonButtons>
           <IonButton>
@@ -46,7 +46,7 @@ const HorizontalRecCardFeeds: React.FC<RecommendedRestaurantsProps> = ({
       </div>
 
       <IonGrid className="restaurant-grid">
-        <IonRow className="horizontal-scroll">
+        <IonRow className="horizontalScroll">
           {restaurantData.map((restaurant, index) => (
             <IonCol key={index} className="scroll-item">
               <IonCard className="restaurant-card">

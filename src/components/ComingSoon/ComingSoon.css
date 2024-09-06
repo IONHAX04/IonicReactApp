@@ -1,0 +1,10 @@
+.centeredContent{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comingSoonGif{
+    width: 400px;
+    height: 400px;
+}

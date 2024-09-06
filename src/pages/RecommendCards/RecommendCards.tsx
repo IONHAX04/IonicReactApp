@@ -21,7 +21,7 @@ const RecommendCards: React.FC<CardComponentProps> = ({
   content,
 }) => {
   return (
-    <IonCard className="ion-margin ionCards">
+    <IonCard className="ionCards">
       <img
         alt={title}
         src={imageSrc}

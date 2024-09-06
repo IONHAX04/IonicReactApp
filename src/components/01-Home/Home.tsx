@@ -195,19 +195,21 @@ function Home() {
       </div>
 
       <IonGrid>
-        <IonRow className="horizontal-scroll">
+        <IonRow className="horizontalScroll">
           {iconData.map((item, index) => (
             <IconCard key={index} icon={item.icon} name={item.name} />
           ))}
         </IonRow>
       </IonGrid>
 
-      <RecommendCards
-        imageSrc={cardData.imageSrc}
-        title={cardData.title}
-        subtitle={cardData.subtitle}
-        content={cardData.content}
-      />
+      <IonCard className="ion-margin">
+        <RecommendCards
+          imageSrc={cardData.imageSrc}
+          title={cardData.title}
+          subtitle={cardData.subtitle}
+          content={cardData.content}
+        />
+      </IonCard>
 
       <RecommendedRestaurants restaurantData={restaurantData} />
 
@@ -246,7 +248,7 @@ function Home() {
 
       <RecommendedRestaurants restaurantData={restaurantData} />
 
-      <div className="header-content">
+      <div className="headerContent">
         <IonTitle>Recent Blogs</IonTitle>
         <IonButtons>
           <IonButton>
