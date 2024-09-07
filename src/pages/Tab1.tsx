@@ -31,11 +31,11 @@ const Tab1: React.FC = () => {
           </IonToolbar>
         </IonHeader> */}
         <IonContent fullscreen>
-          <IonHeader collapse="condense">
+          {/* <IonHeader>
             <IonToolbar>
               <IonTitle size="large">Home</IonTitle>
             </IonToolbar>
-          </IonHeader>
+          </IonHeader> */}
           <Home />
         </IonContent>
       </IonPage>

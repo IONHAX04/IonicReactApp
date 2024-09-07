@@ -1,0 +1,19 @@
+.notificationContents ion-thumbnail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notificationIcons {
+  font-size: 1.4rem;
+  transform: rotate(-30deg);
+  background: rgb(230, 230, 230);
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.unread {
+  background: rgb(182, 182, 182);
+  padding: 5px;
+  border-radius: 50%;
+}

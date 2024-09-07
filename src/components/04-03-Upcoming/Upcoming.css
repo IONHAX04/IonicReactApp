@@ -1,0 +1,16 @@
+.upcomingActivities ion-label {
+  padding: 20px;
+}
+
+.upcomingActivities {
+  margin-top: 30px;
+}
+
+.upcomingNotifications ion-header {
+  padding: 20px;
+}
+
+.upcomingNotifications .header-md {
+  box-shadow: 0 0px -1px -1px rgba(0, 0, 0, -0.8),
+    0 -1px 0px 0 rgba(0, 0, 0, 0.14), 0 0px 5px 0 rgba(0, 0, 0, 0.12);
+}

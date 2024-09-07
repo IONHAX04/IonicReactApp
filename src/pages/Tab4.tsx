@@ -1,30 +1,25 @@
+import React from "react";
 import {
   IonContent,
   IonHeader,
   IonPage,
-  IonButton,
-  IonButtons,
+  IonTabs,
+  IonTabButton,
+  IonLabel,
+  IonTabBar,
   IonIcon,
   IonTitle,
   IonToolbar,
+  IonRouterOutlet,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
-import icon from "../../dist/logo.png";
-import { qrCodeOutline } from "ionicons/icons";
 
 import "./Tab1.css";
+import Alerts from "../components/04-Alerts/Alerts";
 
 const Tab4: React.FC = () => {
   return (
     <IonPage>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Notifications</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Notifications page" />
-      </IonContent>
+      <Alerts />
     </IonPage>
   );
 };
