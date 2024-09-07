@@ -1,51 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  IonAccordion,
-  IonAccordionGroup,
-  IonItem,
+  IonContent,
+  IonPage,
+  IonTabBar,
+  IonTabButton,
   IonLabel,
-  AccordionGroupCustomEvent,
+  IonIcon,
 } from "@ionic/react";
-function Example() {
-  const values = ["first", "second", "third"];
-  const accordionGroupChange = (ev: AccordionGroupCustomEvent) => {
-    const collapsedItems = values.filter((value) => value !== ev.detail.value);
-    const selectedValue = ev.detail.value;
+import {
+  homeOutline,
+  personOutline,
+  chatbubbleOutline,
+  alertCircleOutline,
+  extensionPuzzleOutline,
+  mailUnreadOutline,
+} from "ionicons/icons";
 
-    console.log(
-      `Expanded: ${
-        selectedValue === undefined ? "None" : ev.detail.value
-      } | Collapsed: ${collapsedItems.join(", ")}`
-    );
-  };
+import Home from "../../components/01-Home/Home";
+import Profile from "../../components/06-Profile/Profile";
+
+const ControlledTabsExample: React.FC = () => {
+  const [selectedTab, setSelectedTab] = useState("home");
 
   return (
-    <IonAccordionGroup onIonChange={accordionGroupChange}>
-      <IonAccordion value="first">
-        <IonItem slot="header" color="light">
-          <IonLabel>First Accordion</IonLabel>
-        </IonItem>
-        <div className="ion-padding" slot="content">
-          First Content
+    <IonPage>
+      <IonTabBar slot="top">
+        <IonTabButton
+          tab="home"
+          onClick={() => setSelectedTab("home")}
+          selected={selectedTab === "home"}
+        >
+          <IonIcon icon={alertCircleOutline} />
+          <IonLabel>Notifications</IonLabel>
+        </IonTabButton>
+        <IonTabButton
+          tab="profile"
+          onClick={() => setSelectedTab("profile")}
+          selected={selectedTab === "profile"}
+        >
+          <IonIcon icon={extensionPuzzleOutline} />
+          <IonLabel>Activities</IonLabel>
+        </IonTabButton>
+        <IonTabButton
+          tab="contact"
+          onClick={() => setSelectedTab("contact")}
+          selected={selectedTab === "contact"}
+        >
+          <IonIcon icon={mailUnreadOutline} />
+          <IonLabel>Upcoming</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
+      <IonContent>
+        <div className="tab-content">
+          {selectedTab === "home" && <Home />}
+          {selectedTab === "profile" && <Profile />}
+          {/* {selectedTab === "contact" && <Contact />} */}
         </div>
-      </IonAccordion>
-      <IonAccordion value="second">
-        <IonItem slot="header" color="light">
-          <IonLabel>Second Accordion</IonLabel>
-        </IonItem>
-        <div className="ion-padding" slot="content">
-          Second Content
-        </div>
-      </IonAccordion>
-      <IonAccordion value="third">
-        <IonItem slot="header" color="light">
-          <IonLabel>Third Accordion</IonLabel>
-        </IonItem>
-        <div className="ion-padding" slot="content">
-          Third Content
-        </div>
-      </IonAccordion>
-    </IonAccordionGroup>
+      </IonContent>
+    </IonPage>
   );
-}
-export default Example;
+};
+
+export default ControlledTabsExample;

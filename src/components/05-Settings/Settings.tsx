@@ -22,7 +22,7 @@ import IonItems from "../../pages/IonItem/IonItems";
 
 import "./Settings.css";
 
-function Settings() {
+const Settings: React.FC = () => {
   const cardItems = [
     { icon: personCircleOutline, label: "Orders" },
     { icon: cashOutline, label: "Wishlist" },
@@ -85,6 +85,6 @@ function Settings() {
       </IonItem>
     </IonContent>
   );
-}
+};
 
 export default Settings;

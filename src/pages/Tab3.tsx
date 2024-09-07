@@ -18,11 +18,11 @@ const Tab3: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
+        {/* <IonHeader >
           <IonToolbar>
             <IonTitle size="large">QR Scan</IonTitle>
           </IonToolbar>
-        </IonHeader>
+        </IonHeader> */}
         <ExploreContainer name="QR Scan page" />
       </IonContent>
     </IonPage>

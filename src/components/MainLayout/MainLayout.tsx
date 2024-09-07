@@ -36,6 +36,7 @@ import {
   library,
   notifications,
   settings,
+  notificationsSharp,
 } from "ionicons/icons";
 import Tab1 from "../../pages/Tab1";
 import Tab2 from "../../pages/Tab2";
@@ -46,6 +47,7 @@ import Profile from "../06-Profile/Profile";
 import DropDownMenu from "../../pages/DropDownMenu/DropDownMenu";
 import "./MainLayout.css";
 import ComingSoon from "../ComingSoon/ComingSoon";
+import Example from "../../pages/DraftTestings/Example";
 
 const MainLayout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -207,6 +209,14 @@ const MainLayout: React.FC = () => {
           />
           <Route
             exact
+            path="/example"
+            render={() => {
+              setActiveTab("/example");
+              return <Example />;
+            }}
+          />
+          <Route
+            exact
             path="/comingSoon"
             render={() => {
               setActiveTab("/comingSoon");
@@ -221,7 +231,6 @@ const MainLayout: React.FC = () => {
               return <Profile />;
             }}
           />
-          <Route exact path="/" render={() => <Redirect to="/comingSoon" />} />
         </IonRouterOutlet>
       </IonContent>
 
@@ -250,7 +259,7 @@ const MainLayout: React.FC = () => {
         <IonTabButton tab="tab4" href="/tab4">
           <IonIcon
             aria-hidden="true"
-            icon={activeTab === "/tab4" ? notifications : notificationsOutline}
+            icon={activeTab === "/tab4" ? notifications : notificationsSharp}
           />
           <IonLabel>Alerts</IonLabel>
         </IonTabButton>
