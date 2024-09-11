@@ -1,6 +1,20 @@
-import React from "react";
-import { IonContent, IonTitle, IonItem, IonLabel } from "@ionic/react";
+import React, { useState, useEffect } from "react";
+import {
+  IonContent,
+  IonTitle,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonSkeletonText,
+  IonToolbar,
+  IonProgressBar,
+  IonHeader,
+} from "@ionic/react";
 import SettingsCard from "../../pages/SettingsCard/SettingsCard";
+import IonItems from "../../pages/IonItem/IonItems";
+import { Share } from "@capacitor/share";
+import RateAppModal from "../../pages/AlertConfirmation/AlertConfirmation";
+
 import {
   documentTextOutline,
   helpCircleOutline,
@@ -18,11 +32,56 @@ import {
   logOutOutline,
 } from "ionicons/icons";
 
-import IonItems from "../../pages/IonItem/IonItems";
-
 import "./Settings.css";
 
 const Settings: React.FC = () => {
+  const [showRateAppModal, setShowRateAppModal] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleShareApp = async () => {
+    const appPackageName = window.location.hostname;
+    const appPlayStoreUrl = `https://play.google.com/store/apps/details?id=${appPackageName}`;
+    console.log("appPlayStoreUrl", appPlayStoreUrl);
+
+    try {
+      await Share.share({
+        title: "Check out this app!",
+        text: `Check out ${appPlayStoreUrl}`,
+        url: appPlayStoreUrl,
+        dialogTitle: "Share with",
+      });
+
+      console.log("Share successful");
+    } catch (error) {
+      console.error("Error sharing", error);
+    }
+  };
+
+  const handleRateApp = () => {
+    setShowRateAppModal(true);
+  };
+
+  const goToAppStore = () => {
+    const appPackageName = window.location.hostname;
+    const isAndroid = /android/i.test(navigator.userAgent);
+    const playStoreUrl = `https://play.google.com/store/apps/details?id=${appPackageName}`;
+    const appStoreUrl = `https://apps.apple.com/app/id${appPackageName}`;
+
+    if (isAndroid) {
+      window.open(playStoreUrl, "_blank");
+    } else {
+      window.open(appStoreUrl, "_blank");
+    }
+  };
+
   const cardItems = [
     { icon: personCircleOutline, label: "Orders" },
     { icon: cashOutline, label: "Wishlist" },
@@ -39,8 +98,8 @@ const Settings: React.FC = () => {
   ];
 
   const shareSettings = [
-    { icon: thumbsUpOutline, label: "Rate App" },
-    { icon: shareSocialOutline, label: "Share App" },
+    { icon: thumbsUpOutline, label: "Rate App", onClick: handleRateApp },
+    { icon: shareSocialOutline, label: "Share App", onClick: handleShareApp },
   ];
 
   const supportAndPrivacy = [
@@ -60,29 +119,78 @@ const Settings: React.FC = () => {
 
   return (
     <IonContent color="light">
-      <div className="card-grid">
-        {cardItems.map((item, index) => (
-          <SettingsCard key={index} icon={item.icon} label={item.label} />
-        ))}
-      </div>
+      <IonHeader>
+        {loading && <IonProgressBar type="indeterminate" />}
+      </IonHeader>
 
-      <IonTitle className="ion-margin-top">Account Settings</IonTitle>
-      <IonItems items={accountSettings} />
+      {loading ? (
+        <IonList>
+          <IonItem>
+            <IonLabel>
+              <IonSkeletonText animated style={{ width: "80%" }} />
+            </IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonLabel>
+              <IonSkeletonText animated style={{ width: "80%" }} />
+            </IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonLabel>
+              <IonSkeletonText animated style={{ width: "80%" }} />
+            </IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonLabel>
+              <IonSkeletonText animated style={{ width: "80%" }} />
+            </IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonLabel>
+              <IonSkeletonText animated style={{ width: "80%" }} />
+            </IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonLabel>
+              <IonSkeletonText animated style={{ width: "80%" }} />
+            </IonLabel>
+          </IonItem>
+        </IonList>
+      ) : (
+        <>
+          <div className="card-grid">
+            {cardItems.map((item, index) => (
+              <SettingsCard key={index} icon={item.icon} label={item.label} />
+            ))}
+          </div>
 
-      <IonTitle className="ion-margin-top">Share</IonTitle>
-      <IonItems items={shareSettings} />
+          <IonTitle className="ion-margin-top">Account Settings</IonTitle>
+          <IonItems items={accountSettings} />
 
-      <IonTitle className="ion-margin-top">Support and Privacy</IonTitle>
-      <IonItems items={supportAndPrivacy} />
+          <IonTitle className="ion-margin-top">Share</IonTitle>
+          <IonItems items={shareSettings} />
 
-      <IonTitle className="ion-margin-top">Additional Features</IonTitle>
-      <IonItems items={additionalFeatures} />
+          <IonTitle className="ion-margin-top">Support and Privacy</IonTitle>
+          <IonItems items={supportAndPrivacy} />
 
-      <IonItems items={logoutItem} />
+          <IonTitle className="ion-margin-top">Additional Features</IonTitle>
+          <IonItems items={additionalFeatures} />
 
-      <IonItem lines="none">
-        <IonLabel className="ion-text-center">Made with ♥ by Zadroit</IonLabel>
-      </IonItem>
+          <IonItems items={logoutItem} />
+
+          <IonItem lines="none">
+            <IonLabel className="ion-text-center">
+              Made with ♥ by Zadroit
+            </IonLabel>
+          </IonItem>
+
+          <RateAppModal
+            isOpen={showRateAppModal}
+            onClose={() => setShowRateAppModal(false)}
+            onRateIt={goToAppStore}
+          />
+        </>
+      )}
     </IonContent>
   );
 };

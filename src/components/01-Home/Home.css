@@ -181,8 +181,7 @@
   font-weight: bolder;
 }
 
-
-.horizontalScroll .scroll-item{
+.horizontalScroll .scroll-item {
   display: flex;
   flex-direction: column;
   align-items: center;
