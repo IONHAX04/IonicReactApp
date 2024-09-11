@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  IonApp,
-  setupIonicReact,
-} from "@ionic/react";
+import { IonApp, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { SplashScreen } from "@capacitor/splash-screen";
 import "./app.css";
@@ -32,13 +29,13 @@ import MainLayout from "./components/MainLayout/MainLayout";
 setupIonicReact();
 
 const App: React.FC = () => {
-  useEffect(() => {
-    SplashScreen.show();
+  // useEffect(() => {
+  //   SplashScreen.show();
 
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 2000);
-  }, []);
+  //   setTimeout(() => {
+  //     SplashScreen.hide();
+  //   }, 2000);
+  // }, []);
 
   return (
     <IonApp>
@@ -93,7 +90,7 @@ const App: React.FC = () => {
     //         <IonTabButton tab="tab4" href="/tab4">
     //           <IonIcon aria-hidden="true" icon={notificationsOutline} />
     //           <IonLabel>Alerts</IonLabel>
-    //         </IonTabButton> 
+    //         </IonTabButton>
     //         <IonTabButton tab="tab5" href="/tab5">
     //           <IonIcon aria-hidden="true" icon={settingsOutline} />
     //           <IonLabel>Settings</IonLabel>

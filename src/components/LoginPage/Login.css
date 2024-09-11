@@ -1,0 +1,132 @@
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.navigationButton {
+  margin: 0 10px;
+}
+
+.dotContainer {
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  margin: 0 5px;
+}
+
+.dot.active {
+  background-color: black;
+}
+
+.introContents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  height: 250px;
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.imageContainer.show {
+  opacity: 0;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.5s forwards;
+}
+
+.slide-out-right {
+  animation: slideOutRight 0.5s forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s forwards;
+}
+
+.slide-out-left {
+  animation: slideOutLeft 0.5s forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.stepText {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.introPageNavIcons {
+  font-size: 30px;
+}
+
+.splashScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+}
+
+.splashScreen ion-img {
+  height: 300px;
+  margin-bottom: 100px;
+}
+
+.splashScreen ion-spinner{
+  height: 50px;
+  width: 50px;
+}

@@ -1,64 +1,54 @@
 import React, { useState } from "react";
 import {
-  IonContent,
-  IonPage,
-  IonTabBar,
-  IonTabButton,
+  IonSegment,
+  IonSegmentButton,
   IonLabel,
-  IonIcon,
+  IonContent,
 } from "@ionic/react";
-import {
-  homeOutline,
-  personOutline,
-  chatbubbleOutline,
-  alertCircleOutline,
-  extensionPuzzleOutline,
-  mailUnreadOutline,
-} from "ionicons/icons";
-
-import Home from "../../components/01-Home/Home";
 import Profile from "../../components/06-Profile/Profile";
 
-const ControlledTabsExample: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState("home");
+const SegmentContent1: React.FC = () => (
+  <div>
+    <Profile />
+  </div>
+);
+
+const SegmentContent2: React.FC = () => (
+  <div>
+    <h2>Segment Content</h2>
+    <p>This is the content for the Segment segment.</p>
+  </div>
+);
+
+function Example() {
+  const [selectedSegment, setSelectedSegment] = useState<string>("default");
 
   return (
-    <IonPage>
-      <IonTabBar slot="top">
-        <IonTabButton
-          tab="home"
-          onClick={() => setSelectedTab("home")}
-          selected={selectedTab === "home"}
-        >
-          <IonIcon icon={alertCircleOutline} />
-          <IonLabel>Notifications</IonLabel>
-        </IonTabButton>
-        <IonTabButton
-          tab="profile"
-          onClick={() => setSelectedTab("profile")}
-          selected={selectedTab === "profile"}
-        >
-          <IonIcon icon={extensionPuzzleOutline} />
-          <IonLabel>Activities</IonLabel>
-        </IonTabButton>
-        <IonTabButton
-          tab="contact"
-          onClick={() => setSelectedTab("contact")}
-          selected={selectedTab === "contact"}
-        >
-          <IonIcon icon={mailUnreadOutline} />
-          <IonLabel>Upcoming</IonLabel>
-        </IonTabButton>
-      </IonTabBar>
+    <>
+      <IonSegment
+        mode="ios"
+        value={selectedSegment}
+        onIonChange={(e) => setSelectedSegment(e.detail.value as string)}
+      >
+        <IonSegmentButton value="default">
+          <IonLabel>Default</IonLabel>
+        </IonSegmentButton>
+        <IonSegmentButton value="segment">
+          <IonLabel>Segment</IonLabel>
+        </IonSegmentButton>
+        <IonSegmentButton value="new">
+          <IonLabel>New</IonLabel>
+        </IonSegmentButton>
+      </IonSegment>
+
       <IonContent>
-        <div className="tab-content">
-          {selectedTab === "home" && <Home />}
-          {selectedTab === "profile" && <Profile />}
-          {/* {selectedTab === "contact" && <Contact />} */}
+        <div className="segment-content">
+          {selectedSegment === "default" && <SegmentContent1 />}
+          {selectedSegment === "segment" && <SegmentContent2 />}
         </div>
       </IonContent>
-    </IonPage>
+    </>
   );
-};
+}
 
-export default ControlledTabsExample;
+export default Example;
