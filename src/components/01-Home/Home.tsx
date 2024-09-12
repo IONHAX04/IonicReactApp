@@ -21,6 +21,7 @@ import {
   cubeOutline,
   listOutline,
 } from "ionicons/icons";
+import { useHistory } from "react-router-dom";
 import IconCard from "../../pages/IconCards/IconCards";
 import RecommendCards from "../../pages/RecommendCards/RecommendCards";
 import RecommendedRestaurants from "../../pages/HorizontalRecFeeds/HorizontalRecCardFeeds";
@@ -33,6 +34,8 @@ import { returnUpForwardOutline } from "ionicons/icons";
 import "./Home.css";
 
 function Home() {
+  const history = useHistory();
+
   const [placeholder, setPlaceholder] = React.useState("Search");
   const words = ["Places...", "Foods...", "Services..."];
 
@@ -152,6 +155,13 @@ function Home() {
     },
   ];
 
+  const handleViewBlog = (blog: any) => {
+    history.push({
+      pathname: "/blogContents",
+      state: { blog },
+    });
+  };
+
   React.useEffect(() => {
     let wordIndex = 0;
     let charIndex = 0;
@@ -266,6 +276,7 @@ function Home() {
                 blogName={blog.blogName}
                 shortDescription={blog.shortDescription}
                 updatedDate={blog.updatedDate}
+                onClick={() => handleViewBlog(blog)}
               />
             </IonCol>
           ))}

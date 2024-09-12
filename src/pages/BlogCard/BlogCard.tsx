@@ -5,6 +5,7 @@ interface BlogCardProps {
   blogName: string;
   shortDescription: string;
   updatedDate: string;
+  onClick: () => void;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
@@ -12,16 +13,16 @@ const BlogCard: React.FC<BlogCardProps> = ({
   blogName,
   shortDescription,
   updatedDate,
+  onClick,
 }) => {
   return (
     <div className="blogCard">
       <img src={imageSrc} alt="Blog" className="blogCardImage" />
       <div className="blogCardContents">
         <div className="blogCardTitle">{blogName}</div>
-        {/* <div className="blogCardDescription">{shortDescription}</div> */}
         <div className="blogCardFooter">
           <p>{updatedDate}</p>
-          <a href="#" className="viewBlog">
+          <a className="viewBlog" onClick={onClick}>
             View Blog
           </a>
         </div>
