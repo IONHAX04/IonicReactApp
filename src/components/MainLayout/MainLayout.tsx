@@ -50,6 +50,8 @@ import ComingSoon from "../ComingSoon/ComingSoon";
 import Example from "../../pages/DraftTestings/Example";
 import Alerts from "../04-Alerts/Alerts";
 import Login from "../LoginPage/Login";
+import BlogContents from "../01-01-BlogPage/BlogContents";
+import Quickstart from "../06-01-QuickStart/Quickstart";
 
 const MainLayout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,17 +65,29 @@ const MainLayout: React.FC = () => {
   };
 
   useEffect(() => {
-    const currentPath = window.location.pathname;
-    console.log("currentPath", currentPath);
-    setActiveTab(currentPath);
-
     const userData = JSON.parse(localStorage.getItem("userData") || "{}");
     setIsLoggedIn(userData.isLoggedIn === true);
+    let currentPath = window.location.pathname;
+    if (currentPath === "/") {
+      currentPath = "/tab1";
+    }
+    setActiveTab(currentPath);
   }, [activeTab]);
 
   const handleTabClick = (path: string) => {
     setActiveTab(path);
     history.push(path);
+  };
+
+  const handleLogin = () => {
+    const userData = { isLoggedIn: true };
+    localStorage.setItem("userData", JSON.stringify(userData));
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("userData");
+    setIsLoggedIn(false);
   };
 
   const shouldShowTabBar = [
@@ -87,47 +101,47 @@ const MainLayout: React.FC = () => {
   ].includes(location.pathname);
 
   const foodItems = [
-    { label: "Quick Start", route: "/quick-start", icon: fastFood },
-    { label: "Wallet", route: "/wallet", icon: bicycle },
+    { label: "Quick Start", route: "/foodQuickStart", icon: fastFood },
+    { label: "Wallet", route: "/foodWallet", icon: bicycle },
     {
       label: "Restaurant List",
-      route: "/restaurant-list",
+      route: "/foodRestaurantList",
       icon: libraryOutline,
     },
-    { label: "Blogs", route: "/blogs", icon: notificationsOutline },
-    { label: "Cart", route: "/cart", icon: settingsOutline },
+    { label: "Blogs", route: "/foodBlogs", icon: notificationsOutline },
+    { label: "Cart", route: "/foodCart", icon: settingsOutline },
   ];
 
   const rideItems = [
-    { label: "Quick Start", route: "/quick-start", icon: fastFood },
+    { label: "Quick Start", route: "/rideQuickStart", icon: fastFood },
     {
       label: "Recently Visited Places",
-      route: "/recent-places",
+      route: "/rideRecentPlaces",
       icon: bicycle,
     },
     {
       label: "Favorite Places",
-      route: "/favorite-places",
+      route: "/rideFavPlaces",
       icon: libraryOutline,
     },
   ];
 
   const martItems = [
-    { label: "Quick Start", route: "/quick-start", icon: fastFood },
-    { label: "Products", route: "/products", icon: bicycle },
-    { label: "Wishlist", route: "/wishlist", icon: libraryOutline },
-    { label: "Cart", route: "/cart", icon: settingsOutline },
-    { label: "Offers", route: "/offers", icon: notificationsOutline },
+    { label: "Quick Start", route: "/martQuickStart", icon: fastFood },
+    { label: "Products", route: "/martProducts", icon: bicycle },
+    { label: "Wishlist", route: "/martWishList", icon: libraryOutline },
+    { label: "Cart", route: "/martCart", icon: settingsOutline },
+    { label: "Offers", route: "/martOffer", icon: notificationsOutline },
   ];
 
   const parcelItems = [
-    { label: "Quick Start", route: "/quick-start", icon: fastFood },
+    { label: "Quick Start", route: "/parcelItems", icon: fastFood },
     {
       label: "Transaction History",
-      route: "/transaction-history",
+      route: "/parcelTransactionHistory",
       icon: libraryOutline,
     },
-    { label: "Address", route: "/address", icon: settingsOutline },
+    { label: "Address", route: "/parcelAddress", icon: settingsOutline },
   ];
 
   return (
@@ -143,18 +157,18 @@ const MainLayout: React.FC = () => {
           <IonAccordionGroup expand="inset">
             <IonAccordion value="first">
               <IonItem slot="header" color="light">
-                <IonIcon icon={fastFood} />
-                <IonLabel className="ion-margin-start">Food</IonLabel>
-              </IonItem>
-              <DropDownMenu items={foodItems} />
-            </IonAccordion>
-
-            <IonAccordion value="second">
-              <IonItem slot="header" color="light">
                 <IonIcon icon={bicycle} />
                 <IonLabel className="ion-margin-start">Ride</IonLabel>
               </IonItem>
               <DropDownMenu items={rideItems} />
+            </IonAccordion>
+
+            <IonAccordion value="second">
+              <IonItem slot="header" color="light">
+                <IonIcon icon={fastFood} />
+                <IonLabel className="ion-margin-start">Food</IonLabel>
+              </IonItem>
+              <DropDownMenu items={foodItems} />
             </IonAccordion>
 
             <IonAccordion value="third">
@@ -210,6 +224,8 @@ const MainLayout: React.FC = () => {
           <Route exact path="/comingSoon" component={ComingSoon} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/blogContents" component={BlogContents} />
+          <Route exact path="/rideQuickStart" component={Quickstart} />
         </IonRouterOutlet>
       </IonContent>
 
@@ -268,8 +284,8 @@ const MainLayout: React.FC = () => {
             <IonTitle>You are not logged in</IonTitle>
             <IonLabel>Please sign in to continue</IonLabel>
             <div className="buttons ion-margin">
-              <IonButton onClick={() => setIsLoggedIn(true)}>Sign In</IonButton>
-              <IonButton fill="outline" onClick={() => setIsLoggedIn(true)}>
+              <IonButton onClick={() => handleLogin()}>Sign In</IonButton>
+              <IonButton fill="outline" onClick={() => handleLogin()}>
                 Sign Up
               </IonButton>
             </div>
